@@ -74,6 +74,7 @@ group :test do
   gem 'shoulda', '~> 3.5'
   # shoulda-matchers 3.x is not compatible with shoulda yet.
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'bundler-audit'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
