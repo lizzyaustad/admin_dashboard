@@ -42,6 +42,7 @@ gem 'devise_invitable'
 
 gem 'awesome_print'
 gem 'slim-rails'
+gem 'twilio-ruby'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
