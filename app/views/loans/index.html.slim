@@ -1,1 +1,19 @@
 h1 Loans
+.table-responsive
+  table.table.table-striped
+    thead
+      tr
+        th class='col-sm-1' Member
+        th class='col-sm-1' Date
+        th class='col-sm-1' Amount
+        th class='col-sm-1' Previous Balance
+        th class='col-sm-1' New Balance
+
+    tbody
+    - @transactions.each do |transaction|
+      tr
+        td= link_to transaction.user.full_name, user_path(transaction.user_id)
+        td= transaction.created_at.strftime('%d/%m/%y')
+        td= transaction.amount
+        td= transaction.previous_balance
+        td= transaction.new_balance

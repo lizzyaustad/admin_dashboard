@@ -6,7 +6,7 @@ h3.text-center= @co_op.name
     dd= @co_op.location
     dt Users
     - @co_op.users.each do |user|
-      dd= link_to "#{user.first_name} #{user.last_name}", user_path(user.id)
+      dd= link_to user.full_name, user_path(user.id)
 .col-md-6
   dl.dl-horizontal
     dt Start Date
@@ -17,4 +17,3 @@ h3.text-center= @co_op.name
     dd= @co_op.initial_balance
     dt Current Balance
     dd= @co_op.current_balance
-        

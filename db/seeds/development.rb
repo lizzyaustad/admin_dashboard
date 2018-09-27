@@ -56,6 +56,7 @@ CoOp.all.each do |co_op|
     end
   end
 end
+puts 'Done'
 
 ### Loans
 print format("%-30s", 'Seeding Loans... ')
@@ -63,15 +64,36 @@ print format("%-30s", 'Seeding Loans... ')
 CoOp.all.each do |co_op|
   next if co_op.phase == 1
   co_op_balance = co_op.initial_balance
-  CoOp.users.each do |user|
+  co_op.users.each do |user|
     Loan.find_or_create_by!(user_id: user.id) do |loan|
       loan.balance = rand(co_op_balance/2)
       co_op_balance = co_op_balance - loan.balance
-      loan.start_date = co_op.start_date + 6.months
-      loan.end_date = loan.start_date + 2.years
+      loan.loan_start = co_op.start_date + 6.months
+      loan.loan_end = loan.loan_start + 2.years
       loan.interest = 5
     end
   end
 end
+puts 'Done'
 
+### Transactions
+print format("%-30s", 'Seeding Transactions... ')
+
+Loan.all.each do |loan|
+  balance = loan.balance
+  amount = rand(loan.balance/24)
+  date = loan.loan_start + 1.month
+  rand(5).times do
+    Transaction.find_or_create_by!(loan_id: loan.id) do |t|
+      t.user_id = loan.user_id
+      t.amount = amount
+      t.previous_balance = balance
+      balance = balance - amount
+      t.new_balance = balance
+      t.created_at = date
+      date += 2.weeks
+    end
+    loan.update(balance: balance)
+  end
+end
 puts 'Done'

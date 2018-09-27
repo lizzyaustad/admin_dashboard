@@ -13,6 +13,8 @@ h3.text-center= "#{@member.first_name} #{@member.last_name}"
     dt Transactions
     - if @member.loan&.transactions.present?
       - @member.loan.transactions.each do |transaction|
-        dd= transaction.amount
-    - else 
+        dd
+          = link_to transaction.created_at.strftime('%d/%m/%y'), transaction_path(transaction.id)
+          = ' | $' + transaction.amount.to_s
+    - else
       dd None
