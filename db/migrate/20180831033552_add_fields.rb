@@ -40,6 +40,8 @@ class AddFields < ActiveRecord::Migration[5.1]
     create_table :loans do |t|
       t.integer :user_id, null: false
       t.integer :balance, null: false
+      t.integer :initial_balance, null: false
+      t.integer :total_repayed, null: false
       t.integer :interest, null: false
       t.datetime :loan_start, null: false
       t.datetime :loan_end, null: false

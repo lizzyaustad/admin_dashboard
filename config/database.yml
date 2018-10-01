@@ -2,18 +2,20 @@ default: &default
   adapter: mysql2
   encoding: utf8
   username: root
-  password: 1nDDR3mmoJtsHtGr
-  host: mysql.pangea-network.svc
+  password:
   port: 3306
 
 development:
   <<: *default
   database: development_db_name
+  host: 127.0.0.1
 
 test:
   <<: *default
   database: test_db_name
+  host: 127.0.0.1
 
 production:
   <<: *default
   database: production_db_name
+  host: mysql.pangea-network.svc
