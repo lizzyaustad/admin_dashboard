@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20180831033552) do
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
     t.integer "balance", null: false
+    t.integer "initial_balance", null: false
+    t.integer "total_repayed", null: false
     t.integer "interest", null: false
     t.datetime "loan_start", null: false
     t.datetime "loan_end", null: false
